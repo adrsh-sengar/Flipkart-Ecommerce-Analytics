@@ -22,8 +22,8 @@ That's the kind of insight that changes how a business thinks about its next sal
 
 ## Dashboard Preview
 
-![image](https://github.com/adrsh-sengar/Flipkart-Ecommerce-Analytics/blob/main/Final_Dashboard/Fliplart_Dashboard.pdf)
-
+![image](https://github.com/adrsh-sengar/Flipkart-Ecommerce-Analytics/blob/main/Power%20BI_Images/Power%20BI%20Image%201.png)
+![image](https://github.com/adrsh-sengar/Flipkart-Ecommerce-Analytics/blob/main/Power%20BI_Images/Power%20BI%20Image%202.png)
 ---
 
 ## Tools Used
