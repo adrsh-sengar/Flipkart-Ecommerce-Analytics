@@ -1,55 +1,85 @@
+# Flipkart Big Billion Days — E-Commerce Analytics Dashboard
 
-https://github.com/user-attachments/assets/137d9e21-aab5-41c0-a283-06946d2d1ea7
-Uploading Dashboard_demo.mp4…
-# 🛒 Flipkart Big Billion Days: Post-Sale Analytics Hub
-
-## 📌 Project Overview
-The "Big Billion Days" is a massive e-commerce event, but high Gross Merchandise Value (GMV) often masks shrinking profit margins due to heavy discounting. I built this **End-to-End Enterprise Command Center** to give C-suite executives a clear, actionable post-sale autopsy. 
-
-Instead of just tracking vanity metrics, this tool uncovers regional losses, highly profitable sub-categories, and critical data engineering flaws.
-
-### 📂 Files Included in this Repository
-* **`Flipkart_Command_Center.pbix`**: The fully interactive Power BI dashboard.
-* **`Dashboard_Demo.mp4`**: A video walkthrough of the interactive UI/UX and cross-filtering features.
-* **`Dashboard_Report.pdf`**: Static snapshot of the executive views.
-* **`Python_EDA.py`**: The Python script used for initial data cleaning and anomaly detection.
-* **`Raw_Data.csv`**: The initial dataset used for modeling.
+Flipkart's Big Billion Days is one of the biggest sales events in Indian e-commerce. Massive revenue numbers look great on paper — but when you dig into the data, aggressive discounting can quietly destroy profitability. This project is about finding exactly that.
 
 ---
 
-## 🛠️ Tech Stack & Skills Demonstrated
-* **Exploratory Data Analysis (EDA):** Python (Pandas)
-* **Data Engineering:** Power Query, Star Schema Data Modeling
-* **Business Logic:** Advanced DAX (Time Intelligence, Dynamic Targets, Margin Ratios)
-* **UI/UX Design:** Power BI (Custom layouts, cognitive load reduction, brand alignment)
+## The Problem
 
-## 🏗️ Data Architecture (The Star Schema)
-To ensure dynamic filtering and accurate DAX calculations without relationship loops, I modeled the raw CSV files into a strict Star Schema:
-* **Fact Tables:** `Order_Details` (Transactions) and `Sales_target` (Goals).
-* **Dimension Tables:** `List_of_Orders` (Geographic data), `Category_Dim` (Bridge table), and a custom DAX-generated `Calendar` table for unbroken time-series analysis.
+During Big Billion Days, Flipkart offers heavy discounts across thousands of product categories to drive volume. The business question nobody was answering clearly was — **are we actually making money, or just moving products?**
+
+With no category-level visibility into discount ROI, finance teams couldn't tell which categories were profitable, which were bleeding margin, and whether the overall sale was hitting its targets. This project builds that visibility.
 
 ---
 
-## 📊 Key Executive Insights
+## What I Found
 
-### 1. The Target Miss & Tight Margins
-Despite generating **$431.5K** in total revenue, aggressive discounting diluted the profit margin to just **5.55%** ($23.96K Net Profit), only hitting ~50% of the finance team's target.
+Despite generating **$431.5K in total revenue**, aggressive discounting diluted the net profit margin to just **5.55%** ($23.96K net profit) — roughly **50% below** the finance team's target.
 
-### 2. The "Hero" vs. "Villain" Products
-* **Heroes:** Printers ($6.0K) and Bookcases ($4.9K) acted as the core profit engines.
-* **Villains:** The Furniture category (specifically Tables) operated at a massive **-$4.0K loss**. Selling more tables during this event actively hurt the company's bottom line.
-
-### 3. Geographic Bleed
-Northern hubs like Uttar Pradesh ($2.8K) and Delhi ($2.2K) are highly profitable, but the Southern markets (Tamil Nadu, Andhra Pradesh) are operating at a severe net loss, requiring an immediate logistics review.
-
-### 4. 🚨 Critical Data Quality Catch
-During EDA, I discovered that **89% of profitable orders lacked geolocation data** (Categorized as "Blank"). This indicates a critical failure in the CRM/Checkout data capture process that requires immediate engineering intervention.
+That's the kind of insight that changes how a business thinks about its next sale.
 
 ---
 
-## 🎨 UI/UX Design Approach
-Designed with **Executive Cognitive Load** in mind:
-* Strict adherence to Flipkart brand guidelines (High-contrast Yellow/Blue).
-* Soft drop-shadows and rounded borders to mimic a modern web-application interface.
-* Optimized "Data-to-Ink" ratio by removing redundant axes and gridlines.
-* Custom page navigation built directly into the header ribbon.
+## Dashboard Preview
+
+![Dashboard Overview](https://github.com/adrsh-sengar/Flipkart-Ecommerce-Analytics/blob/main/Final_Dashboard/Fliplart_Dashboard.pdf)
+
+---
+
+## Tools Used
+
+- **Python (Pandas)** — data cleaning, validation, and anomaly detection on raw transactional data
+- **Power BI** — multi-page interactive dashboard with Star Schema data model and DAX measures
+- **MS Excel** — raw data source (CSV files)
+
+---
+
+## How It Works
+
+**Step 1 — Data Cleaning**
+The raw CSV files had inconsistencies, missing values, and anomalies. Python (Pandas) was used to clean and validate the data before any analysis — garbage in, garbage out applies here more than anywhere else.
+
+**Step 2 — Data Modelling (Star Schema)**
+To ensure accurate DAX calculations and dynamic filtering without relationship conflicts, the data was structured into a strict Star Schema:
+- **Fact Tables:** Order Details (transactions) and Sales Target (goals)
+- **Dimension Tables:** Geographic data, Category bridge table, and a custom DAX-generated Calendar table for unbroken time-series analysis
+
+**Step 3 — Dashboard**
+Power BI dashboard built across multiple pages covering:
+- Revenue vs. target tracking
+- Profit margin by category
+- Discount impact analysis
+- Geographic sales performance
+- Time-series trend analysis
+
+DAX measures handle all dynamic KPI calculations — profit margin %, discount rate, revenue gap from target — all responding to slicer selections in real time.
+
+---
+
+## Key Findings
+
+- Net profit margin of **5.55%** on $431.5K revenue — roughly half of what the finance team targeted
+- Identified which product categories had the worst discount-to-margin ratio — these are the ones dragging overall profitability down
+- Geographic breakdown revealed which regions were driving volume vs. which were actually profitable
+- Time-series analysis showed which days of the sale had the highest revenue leakage due to over-discounting
+
+---
+
+## What I Learned
+
+The most interesting part of this project wasn't building the dashboard — it was realising how easy it is for a business to confuse revenue with profit. Big Billion Days looks like a massive success from a GMV perspective. But once you break it down by category and factor in discounts, the picture gets a lot more complicated.
+
+The Star Schema modelling was also a good exercise in thinking about data relationships before touching Power BI — getting the model right upfront saved a lot of headache with DAX calculations later.
+
+---
+
+## File Structure
+
+```
+├── Raw_Data.csv                    # Original dataset
+├── Python_EDA.py                   # Data cleaning and anomaly detection
+├── Flipkart_Command_Center.pbix    # Power BI dashboard file
+├── Dashboard_Report.pdf            # Static snapshot of dashboard views
+├── images/                         # Dashboard screenshots
+└── README.md
+```
